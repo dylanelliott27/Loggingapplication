@@ -48,9 +48,9 @@ sqlsrv_free_stmt($getResults);
 
 
 $host = getenv('DB_SERVERNAME');
-$username = getenv('DB_DB');
-$password = getenv('DB_UID');
-$db_name = getenv('DB_PASS');
+$username = getenv('DB_UID');
+$password = getenv('DB_PASS');
+$db_name = getenv('DB_DB');
 
 //Establishes the connection
 $conn = mysqli_init();

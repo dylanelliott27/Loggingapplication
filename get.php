@@ -1,8 +1,9 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <?php
-  if (file_exists('./.env.php')) {
+if (file_exists('./.env.php')) {
     require_once('./.env.php');
   }
+  /*
 
 $serverName = getenv('DB_SERVERNAME'); // update me
 $connectionOptions = array(
@@ -43,3 +44,48 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 }
 echo '</table>';
 sqlsrv_free_stmt($getResults);
+*/
+
+
+$host = getenv('DB_SERVERNAME');
+$username = getenv('DB_DB');
+$password = getenv('DB_UID');
+$db_name = getenv('DB_PASS');
+
+//Establishes the connection
+$conn = mysqli_init();
+mysqli_ssl_set($conn,NULL,NULL, "./BaltimoreCyberTrustRoot.crt.pem", NULL, NULL) ;
+mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
+if (mysqli_connect_errno($conn)) {
+die('Failed to connect to MySQL: '.mysqli_connect_error());
+}
+
+$requestedRow = mysqli_query($conn, "SELECT * from Diabeteslogs where date = '{$_POST['date']}';");
+$dataRows = mysqli_fetch_all($requestedRow, MYSQLI_ASSOC);
+
+echo '<table class="table table-striped text-center">';
+echo '<tr>';
+echo '<th>Date</th>';
+echo '<th>Meal-type</th>';
+echo '<th>Carbs</th>';
+echo '<th>Time</th>';
+echo '<th>Insulin</th>';
+echo '<th>Sugars</th>';
+echo '</tr>';
+
+    foreach($dataRows as $row){
+    
+    echo '<tr>';
+    echo "<td>{$row['date']}</td>";
+    echo "<td>{$row['mealtype']}</td>";
+    echo "<td>{$row['carbs']}</td>";
+    echo "<td>{$row['time']}</td>";
+    echo "<td>{$row['insulin']}</td>";
+    echo "<td>{$row['sugars']}</td>";
+    echo "</tr>";
+    }
+echo '</table>';
+
+//Close the connection
+mysqli_close($conn);
+?>

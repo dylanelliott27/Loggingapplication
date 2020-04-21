@@ -1,4 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Headers: http://localhost:3000');
+header('Access-Control-Allow-Methods: *');
 if (file_exists('./.env.php')) {
     require_once('./.env.php');
 }
@@ -21,7 +24,6 @@ $dataRows = mysqli_fetch_all($requestedRow, MYSQLI_ASSOC);
 
 echo json_encode($dataRows);
 mysqli_close($conn);
-header('Access-Control-Allow-Origin: *'); 
 exit;
 
 ?>

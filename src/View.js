@@ -11,7 +11,7 @@ function View(props) {
 const requestRecords = (e) => {
     setLoading(true);
     e.preventDefault();
-    fetch(`../public/get.php?date=${date}`)
+    fetch(`http://localhost/loggingapplication/public/get.php?date=${date}`)
         .then(response => response.json())
         .then(jsondata => {setResults(jsondata); setLoading(false)})
 }

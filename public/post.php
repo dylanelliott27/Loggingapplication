@@ -1,8 +1,9 @@
 <?php
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Methods: *');
 if (file_exists('./.env.php')) {
     require_once('./.env.php');
 }
-header('Access-Control-Allow-Origin: *'); 
 $host = getenv('DB_SERVERNAME');
 $username = getenv('DB_UID');
 $password = getenv('DB_PASS');

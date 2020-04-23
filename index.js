@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
     // Serve any static files
     app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all requests to React app
-    app.get('*', function(req, res) {
+    app.get('/', function(req, res) {
       res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     });
   }
@@ -50,9 +50,6 @@ app.get('/api/retrieve', (req, res) => {
             return Object.assign({}, results);
         });
         console.log(normalResults);
-        /*results.forEach(row => {
-            console.log(row.carbs);
-        })*/
         res.send(normalResults);
     })
     

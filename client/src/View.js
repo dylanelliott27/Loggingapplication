@@ -13,7 +13,8 @@ const requestRecords = (e) => {
     e.preventDefault();
     //?date=${date}
     fetch(`/api/retrieve`)
-        .then(response => response.json())
+        .then(response => {console.log(response);
+            return response.json()})
         .then(jsondata => {setResults(jsondata); setLoading(false)})
 }
   if(results){

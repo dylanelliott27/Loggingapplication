@@ -42,7 +42,7 @@ app.get('/api/retrieve', (req, res) => {
         console.log("connection made to mysql");
     })
     
-    connection.query(`SELECT * from Diabeteslogs where date = '${req.query.date}'`, (error, results, fields) => {
+    connection.query(`SELECT * from Diabeteslogs where date = '2020-04-16'`, (error, results, fields) => {
         if(error) throw error;
         var normalResults = results.map((results, index) => {
             return Object.assign({}, results);

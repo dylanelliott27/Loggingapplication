@@ -29,7 +29,7 @@ function Create(props) {
         const form = document.getElementById('recordform');
         var forminfo = new FormData(form);
 
-        fetch('http://localhost/react-logger/server/post.php', {body: forminfo, method: 'post'})
+        fetch('http://localhost/loggingapplication/public/post.php', {body: forminfo, method: 'post'})
         .then(res =>{
             if(res.status === 200){
                 console.log("SUCCESS");

@@ -12,7 +12,9 @@ const path = require("path");
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
   }
-
+  app.listen(port, () => {
+    console.log("hello");
+})
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cors());
@@ -42,7 +44,7 @@ app.get('/api/retrieve', (req, res) => {
         console.log("connection made to mysql");
     })
     
-    connection.query(`SELECT * from Diabeteslogs where date = '2020-04-16'`, (error, results, fields) => {
+    connection.query(`SELECT * from Diabeteslogs where date = '${req.query.date}'`, (error, results, fields) => {
         if(error) throw error;
         var normalResults = results.map((results, index) => {
             return Object.assign({}, results);
@@ -57,9 +59,6 @@ app.get('/api/retrieve', (req, res) => {
     connection.end();
 })
 
-app.listen(port, () => {
-    console.log("hello");
-})
 
 app.post('/api/insert', upload.none(), (req, res) => {
     const forminfo = Object.assign({}, req.body);

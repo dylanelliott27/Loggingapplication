@@ -11,7 +11,8 @@ function View(props) {
 const requestRecords = (e) => {
     setLoading(true);
     e.preventDefault();
-    fetch(`/retrieve?date=${date}`)
+    //?date=${date}
+    fetch(`/api/retrieve`)
         .then(response => response.json())
         .then(jsondata => {setResults(jsondata); setLoading(false)})
 }

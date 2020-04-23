@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 
-app.get('/retrieve', (req, res) => {
+app.get('/api/retrieve', (req, res) => {
     const connection = mysql.createConnection({
         host : process.env.HOST,
         ssl  : {
@@ -43,8 +43,8 @@ app.get('/retrieve', (req, res) => {
     connection.connect(() => {
         console.log("connection made to mysql");
     })
-    
-    connection.query(`SELECT * from Diabeteslogs where date = '${req.query.date}'`, (error, results, fields) => {
+    //${req.query.date}
+    connection.query(`SELECT * from Diabeteslogs where date = '2020-04-17'`, (error, results, fields) => {
         if(error) throw error;
         var normalResults = results.map((results, index) => {
             return Object.assign({}, results);

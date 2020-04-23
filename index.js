@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer();
 const port = process.env.PORT || 2000;
+const path = require("path");
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()

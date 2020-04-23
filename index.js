@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 
-app.get('/api/retrieve', (req, res) => {
+app.get('/retrieve', (req, res) => {
     const connection = mysql.createConnection({
         host : process.env.HOST,
         ssl  : {

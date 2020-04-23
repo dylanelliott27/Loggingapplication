@@ -1,6 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
 if (file_exists('./.env.php')) {
     require_once('./.env.php');
 }

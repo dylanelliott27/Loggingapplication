@@ -12,9 +12,8 @@ const requestRecords = (e) => {
     setLoading(true);
     e.preventDefault();
     //?date=${date}
-    fetch(`/api/retrieve`)
-        .then(response => {console.log(response);
-            return response.json()})
+    fetch(`/api/retrieve?date=${date}`)
+        .then(response => response.json())
         .then(jsondata => {setResults(jsondata); setLoading(false)})
 }
   if(results){

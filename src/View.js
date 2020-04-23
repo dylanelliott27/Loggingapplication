@@ -11,7 +11,7 @@ function View(props) {
 const requestRecords = (e) => {
     setLoading(true);
     e.preventDefault();
-    fetch(`./public/get.php?date=${date}`)
+    fetch(`https://diabeteslogger.herokuapp.com/public/get.php?date=${date}`)
         .then(response => response.json())
         .then(jsondata => {setResults(jsondata); setLoading(false)})
 }
